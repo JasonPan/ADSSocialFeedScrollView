@@ -1,0 +1,10 @@
+//
+//  ADSSocialFeedScrollViewConfig.xcconfig
+//  ADSSocialFeedScrollView
+//
+//  Created by Jason Pan on 21/02/2016.
+//  Copyright © 2016 ANT Development Studios. All rights reserved.
+//
+//MODULEMAP_FILE = $SRCROOT/$PROJECT_NAME/module.modulemap
+//MODULEMAP_PRIVATE_FILE = $SRCROOT/$PROJECT_NAME/module.private.modulemap
+////SWIFT_OBJC_BRIDGING_HEADER = $SRCROOT/$PROJECT_NAME/ADSSocialFeedScrollView\ Bridging-Header.h

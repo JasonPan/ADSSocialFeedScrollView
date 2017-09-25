@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WordPressPostView" customModule="ADSSocialFeedScrollView" customModuleProvider="target">
+            <connections>
+                <outlet property="_postImageViewHeightConstraint" destination="RjP-gS-ZLq" id="bRP-9l-cXI"/>
+                <outlet property="_postMessageTextViewHeightConstraint" destination="Oew-wH-U6g" id="aRx-v3-QRk"/>
+                <outlet property="_postTitleLabelHeightConstraint" destination="kxZ-LI-58q" id="6w0-fU-t9S"/>
+                <outlet property="contentView" destination="0s1-u7-bzP" id="aaZ-be-js9"/>
+                <outlet property="postCreationDateLabel" destination="QUv-k2-Zhh" id="pzn-pc-lO0"/>
+                <outlet property="postMessageTextView" destination="Hcx-zM-Pa3" id="CAO-dn-mKM"/>
+                <outlet property="postPhotoImageView" destination="DCK-c7-Yf6" id="Tx4-pn-qWK"/>
+                <outlet property="postTitleLabel" destination="Jw6-fF-H44" id="o6c-JC-Xfx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0s1-u7-bzP">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life After Baby with Tracy Harris" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jw6-fF-H44">
+                    <rect key="frame" x="12" y="12" width="296" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="100" constant="23" id="PNo-pb-FXV"/>
+                        <constraint firstAttribute="height" constant="23" id="kxZ-LI-58q"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="14" width="304" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday at 12:43 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QUv-k2-Zhh">
+                    <rect key="frame" x="12" y="36" width="296" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="3D6-76-L0Y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="8" y="14" width="304" height="21"/>
+                    </variation>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-zM-Pa3" customClass="LinkTextView" customModule="ADSSocialFeedScrollView" customModuleProvider="target">
+                    <rect key="frame" x="8" y="51" width="304" height="156"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="100" constant="156" id="7mB-3M-Uq4"/>
+                        <constraint firstAttribute="height" constant="156" id="Oew-wH-U6g"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="fg1-P9-cke"/>
+                    </constraints>
+                    <string key="text">MUMS WITH HUSTLE!! We are super excited to have been interviewed on the Mums With Hustle Podcast this week talking all things business &amp; balance from Yoga Mamas HQ. We share how to create a balanced life as a #mumboss + some of the biggest emotional, mindset and practical challenges faced by all mothers and female biz owners.  We also take you through a mini-meditation that you can do at anytime! \n\nListen at http://mumswithhustle.com/podcasts/mwh-019-learn-create-balanced-life-kate-payne-andy-broadbear-yogamama/ or via iTunes podcasts. \n\nWe'd love to know what you think so hit us up with some feedback. \n\nAll bliss, Andy &amp; Kate</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DCK-c7-Yf6" customClass="ADSActivityIndicatorImageView" customModule="ADSSocialFeedScrollView" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="209" width="320" height="172"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="IiT-kg-LP8"/>
+                        <constraint firstAttribute="height" constant="172" id="RjP-gS-ZLq"/>
+                        <constraint firstAttribute="height" priority="100" constant="172" id="ZxH-XB-TVN"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QUv-k2-Zhh" secondAttribute="trailing" constant="12" id="2Pb-R0-gDk"/>
+                <constraint firstItem="Hcx-zM-Pa3" firstAttribute="leading" secondItem="0s1-u7-bzP" secondAttribute="leading" constant="8" id="3FS-t4-NBu"/>
+                <constraint firstItem="QUv-k2-Zhh" firstAttribute="top" secondItem="Jw6-fF-H44" secondAttribute="bottom" constant="1" id="5X6-f1-Ro8"/>
+                <constraint firstItem="Jw6-fF-H44" firstAttribute="top" secondItem="0s1-u7-bzP" secondAttribute="top" constant="12" id="6AV-pg-LWr"/>
+                <constraint firstAttribute="trailing" secondItem="Jw6-fF-H44" secondAttribute="trailing" constant="12" id="6We-Vo-B9H"/>
+                <constraint firstItem="DCK-c7-Yf6" firstAttribute="leading" secondItem="0s1-u7-bzP" secondAttribute="leading" id="BNt-LV-WVb"/>
+                <constraint firstItem="Jw6-fF-H44" firstAttribute="leading" secondItem="0s1-u7-bzP" secondAttribute="leading" constant="12" id="Z2u-kp-czA"/>
+                <constraint firstAttribute="trailing" secondItem="DCK-c7-Yf6" secondAttribute="trailing" id="din-tq-o7V"/>
+                <constraint firstAttribute="trailing" secondItem="Hcx-zM-Pa3" secondAttribute="trailing" constant="8" id="lJn-Cc-Jck"/>
+                <constraint firstItem="QUv-k2-Zhh" firstAttribute="leading" secondItem="0s1-u7-bzP" secondAttribute="leading" constant="12" id="w5f-ey-7ZD"/>
+                <constraint firstItem="Hcx-zM-Pa3" firstAttribute="top" secondItem="QUv-k2-Zhh" secondAttribute="bottom" constant="-2" id="yD9-Uq-M1S"/>
+                <constraint firstItem="DCK-c7-Yf6" firstAttribute="top" secondItem="Hcx-zM-Pa3" secondAttribute="bottom" constant="2" id="yMu-Pw-dBq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="115" y="141.5"/>
+        </view>
+    </objects>
+</document>

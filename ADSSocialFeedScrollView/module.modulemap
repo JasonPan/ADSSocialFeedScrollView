@@ -1,0 +1,20 @@
+//
+//  module.modulemap
+//  ADSSocialFeedScrollView
+//
+//  Created by Jason Pan on 20/02/2016.
+//  Copyright © 2016 ANT Development Studios. All rights reserved.
+//
+
+framework module ADSSocialFeedScrollView {
+    umbrella header "ADSSocialFeedScrollView.h"
+    
+    private header "DateTools.h"
+    
+    export *
+    module * { export * }
+}
+
+explicit module ADSSocialFeedScrollView.Test {
+    export *
+}

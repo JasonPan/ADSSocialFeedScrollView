@@ -1,0 +1,11 @@
+//
+//  module.private.modulemap
+//  ADSSocialFeedScrollView
+//
+//  Created by Jason Pan on 20/02/2016.
+//  Copyright © 2016 ANT Development Studios. All rights reserved.
+//
+
+explicit module ADSSocialFeedScrollView.Private {
+    export *
+}

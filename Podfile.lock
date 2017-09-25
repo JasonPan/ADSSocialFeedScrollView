@@ -1,0 +1,65 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - DateTools (1.7.0)
+  - FBSDKCoreKit (4.10.1):
+    - Bolts (~> 1.5)
+  - HanekeSwift (0.10.1)
+  - InstagramKit (3.8):
+    - AFNetworking (~> 3.0)
+    - InstagramKit/Exclude-UICKeyChainStore (= 3.8)
+  - InstagramKit/Exclude-UICKeyChainStore (3.8):
+    - AFNetworking (~> 3.0)
+  - MBProgressHUD (1.0.0)
+  - NSDate-Time-Ago (1.0.1)
+  - StringExtensionHTML (0.1.3)
+  - SwiftyJSON (2.3.3)
+  - XCDYouTubeKit (2.5.5)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - DateTools (~> 1.7.0)
+  - FBSDKCoreKit (~> 4.10.0)
+  - HanekeSwift (~> 0.10.1)
+  - InstagramKit (~> 3.8.0)
+  - MBProgressHUD (~> 1.0.0)
+  - NSDate-Time-Ago (~> 1.0.1)
+  - StringExtensionHTML (~> 0.1.3)
+  - SwiftyJSON (~> 2.3.3)
+  - XCDYouTubeKit (~> 2.5.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
+  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
+  InstagramKit: 402d6bba375357b548039de08eea19a1b8716354
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
+  StringExtensionHTML: a56bc49c4f11e7a3893b68aff7f7786eaa11d345
+  SwiftyJSON: 0fd0a115a3c0c09b277d2ab801df154902b942c3
+  XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
+
+PODFILE CHECKSUM: bc87223d04bfc83419d976d51f476727af48209f
+
+COCOAPODS: 1.2.0

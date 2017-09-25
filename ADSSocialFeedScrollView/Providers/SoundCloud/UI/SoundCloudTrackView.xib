@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundCloudTrackView" customModule="ADSSocialFeedScrollView" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="yN5-r4-dfQ" id="X1r-Eh-KWa"/>
+                <outlet property="playbackButton" destination="mxK-9H-v6o" id="vxD-xM-FcF"/>
+                <outlet property="trackCreatedDateLabel" destination="O88-lJ-8Jf" id="3UW-67-4nR"/>
+                <outlet property="trackThumbnailImageView" destination="LAf-kr-woq" id="bbd-uC-Kzq"/>
+                <outlet property="trackTitleLabel" destination="Twh-CU-0dQ" id="UuG-pi-lF4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="yN5-r4-dfQ">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LAf-kr-woq">
+                    <rect key="frame" x="8" y="8" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="2Pb-Yq-0FA"/>
+                        <constraint firstAttribute="width" constant="72" id="WTl-lN-LC7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 weeks ago" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O88-lJ-8Jf">
+                    <rect key="frame" x="88" y="47" width="215" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="Dw2-rx-ub0"/>
+                        <constraint firstAttribute="height" constant="33" id="ift-En-Mjm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Min Mama Meditation - Yoga Nidra" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twh-CU-0dQ">
+                    <rect key="frame" x="88" y="8" width="208" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="8LY-kv-Wby"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxK-9H-v6o">
+                    <rect key="frame" x="307" y="24" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Vht-Ct-LPJ"/>
+                        <constraint firstAttribute="height" constant="40" id="jv9-wz-dLA"/>
+                    </constraints>
+                    <state key="normal" image="SoundCloudPlay"/>
+                    <connections>
+                        <action selector="togglePlayback" destination="-1" eventType="touchUpInside" id="PjJ-uo-xrj"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="O88-lJ-8Jf" secondAttribute="bottom" constant="8" id="4iC-yv-aQT"/>
+                <constraint firstItem="LAf-kr-woq" firstAttribute="centerY" secondItem="yN5-r4-dfQ" secondAttribute="centerY" id="788-dH-rLW"/>
+                <constraint firstAttribute="trailing" secondItem="mxK-9H-v6o" secondAttribute="trailing" constant="12" id="UAM-z9-K25"/>
+                <constraint firstItem="O88-lJ-8Jf" firstAttribute="leading" secondItem="LAf-kr-woq" secondAttribute="trailing" constant="8" id="Vvl-dp-jbE"/>
+                <constraint firstItem="LAf-kr-woq" firstAttribute="leading" secondItem="yN5-r4-dfQ" secondAttribute="leading" constant="8" id="bLG-hU-Jdc"/>
+                <constraint firstItem="mxK-9H-v6o" firstAttribute="centerY" secondItem="yN5-r4-dfQ" secondAttribute="centerY" id="ili-Do-R4k"/>
+                <constraint firstItem="Twh-CU-0dQ" firstAttribute="top" secondItem="yN5-r4-dfQ" secondAttribute="top" constant="8" id="pM3-gb-2iR"/>
+                <constraint firstItem="Twh-CU-0dQ" firstAttribute="leading" secondItem="LAf-kr-woq" secondAttribute="trailing" constant="8" id="qt7-Ys-d34"/>
+                <constraint firstAttribute="trailing" secondItem="Twh-CU-0dQ" secondAttribute="trailing" constant="63" id="sCN-vr-OHS"/>
+                <constraint firstAttribute="trailing" secondItem="O88-lJ-8Jf" secondAttribute="trailing" constant="56" id="uWM-WV-2jr"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="323.5" y="221"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="SoundCloudPlay" width="50" height="50"/>
+    </resources>
+</document>
