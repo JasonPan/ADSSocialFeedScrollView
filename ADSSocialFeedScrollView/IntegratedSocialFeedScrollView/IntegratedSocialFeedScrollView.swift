@@ -287,7 +287,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         
         let initCount = self.displayedPostViews.count
 //        for var i = self.displayedPostViews.count; i < safeCount; i++ { //SELFNOTE: DODGY!!!
-        for var i = initCount; i < safeCount; i++ {
+        for i in initCount ..< safeCount {
             self.displayedPostViews.append(self.filteredPostViews[i])
             let postView = self.displayedPostViews[i] as! UIView
             
@@ -297,12 +297,12 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         }
         
         let startCount = initCount//0
-        for var i: Int = startCount; i < safeCount; i++ {
+        for i in startCount ..< safeCount {
             let postView = self.displayedPostViews[i] as! UIView
             
             var previousPostView: UIView? = nil
             if i > 0 {
-                previousPostView = self.displayedPostViews[i - 1] as! UIView
+                previousPostView = self.displayedPostViews[i - 1] as? UIView
             }
             self.setUpConstraintsForPostView(postView, previousPostView: previousPostView, isFinalView: i == safeCount - 1)
         }
@@ -332,24 +332,24 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.performSelector("initialize", withObject: nil, afterDelay: 0)
+        self.performSelector(#selector(self.initialize), withObject: nil, afterDelay: 0)
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.performSelector("initialize", withObject: nil, afterDelay: 0)
+        self.performSelector(#selector(self.initialize), withObject: nil, afterDelay: 0)
     }
     
     public override func awakeFromNib() {
         super.awakeFromNib()
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.performSelector("initialize", withObject: nil, afterDelay: 0)
+        self.performSelector(#selector(self.initialize), withObject: nil, afterDelay: 0)
     }
     
     public func initialize() {
         
-        self.refreshControl.addTarget(self, action: "refreshControlDidRefresh:", forControlEvents: .ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.refreshControlDidRefresh(_:)), forControlEvents: .ValueChanged)
         
         self.addSubview(self.refreshControl)
         
@@ -530,7 +530,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         //See: http://stackoverflow.com/a/17856354/699963
         self.delegate = self
         
-        for var i: Int = 0; i < self.displayedPostViews.count; i++ {
+        for i in 0 ..< self.displayedPostViews.count {
             let postView = self.displayedPostViews[i] as! UIView
             
             //Fix for scroll bar hidden by subviews issue
@@ -539,7 +539,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
             
             var previousPostView: UIView? = nil
             if i > 0 {
-                previousPostView = self.displayedPostViews[i - 1] as! UIView
+                previousPostView = self.displayedPostViews[i - 1] as? UIView
             }
             self.setUpConstraintsForPostView(postView, previousPostView: previousPostView, isFinalView: i == self.displayedPostViews.count - 1)
         }
@@ -693,7 +693,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     
     private func refreshIndividualYoutubePlaylistItems() {
         let exitBlock = {
-            self.feedLoadCount++
+            self.feedLoadCount += 1
         }
         
         guard ADSSocialFeed.sYoutubePlaylists.count > 0 else {
@@ -732,7 +732,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         
         for provider in providers {
             
-            postViewLoop: for var i: Int = 0; i < self.postViews.count; i++ {
+            postViewLoop: for i in 0 ..< self.postViews.count {
                 let postView = self.postViews[i]
                 
                 if postView.provider == provider {

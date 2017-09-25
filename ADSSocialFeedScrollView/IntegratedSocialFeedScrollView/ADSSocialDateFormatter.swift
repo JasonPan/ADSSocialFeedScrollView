@@ -193,10 +193,7 @@ class ADSSocialDateFormatter: NSObject {
             formattedString = formattedDate?.formattedAsTimeAgo()
         case .SoundCloud:
             formattedString = formattedDate?.formattedAsTimeAgo()
-        default:
-            formattedString = formattedDate?.formattedAsTimeAgo()
         }
-        
         
         return formattedString
     }

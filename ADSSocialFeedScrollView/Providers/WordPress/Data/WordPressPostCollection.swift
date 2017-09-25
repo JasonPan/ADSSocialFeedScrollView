@@ -57,7 +57,7 @@ class WordPressPostCollection: PostCollectionProtocol {
                 
 //                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     self.retrieveImageSourceURLForPost(wordPressPost, completionHandler: {
-                        imageFetchCount++
+                        imageFetchCount += 1
                         
                         if imageFetchCount >= self.posts?.count {
                             block?()

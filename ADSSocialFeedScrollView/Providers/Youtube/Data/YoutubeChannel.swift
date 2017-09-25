@@ -66,7 +66,7 @@ class YoutubeChannel: PostCollectionProtocol {
             
 //            self.fetchPublicChannelPlaylistsInBackgroundWithCompletionHandler(block)
             
-            var tempPlaylists = self.playlists
+            let tempPlaylists = self.playlists
             self.playlists = [YoutubePlaylist]()
             
             self.fetchPublicChannelPlaylistsInBackgroundWithCompletionHandler({
@@ -176,12 +176,12 @@ class YoutubeChannel: PostCollectionProtocol {
     
     internal class func fetchStandalonePlaylistsInBackground(block: (() -> Void)?) {
         
-        var tempPlaylists = ADSSocialFeed.sYoutubePlaylists
+        let tempPlaylists = ADSSocialFeed.sYoutubePlaylists
         ADSSocialFeed.sYoutubePlaylists = [YoutubePlaylist]()
         
         var completionCount = 0
         
-        var completionBlock = {
+        let completionBlock = {
             
             completionCount += 1
             
