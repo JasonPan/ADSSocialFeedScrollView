@@ -9,7 +9,7 @@
 import UIKit
 import InstagramKit
 
-class InstagramUser: NSObject {
+class InstagramUser: NSObject, PostCollectionProtocol {
     
     private let INSTAGRAM_AUTHORISATION_BASE_URL = "https://api.instagram.com/oauth/authorize/"
     
@@ -122,6 +122,16 @@ class InstagramUser: NSObject {
                 }, failure: nil)
         })
     }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        // See: https://stackoverflow.com/a/30101004/699963
+        return self.posts?.map({ $0 as PostProtocol })
+    }
+    
 }
 
 //*********************************************************************************************************

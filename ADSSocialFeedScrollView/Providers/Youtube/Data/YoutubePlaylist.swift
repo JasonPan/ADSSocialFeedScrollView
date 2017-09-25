@@ -8,7 +8,7 @@
 
 import Foundation
 
-class YoutubePlaylist {
+class YoutubePlaylist: PostCollectionProtocol {
     
     private(set) var id                 : String
     internal(set) var title              : String!
@@ -92,6 +92,15 @@ class YoutubePlaylist {
                 block?()
 //            })
         })
+    }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        // See: https://stackoverflow.com/a/30101004/699963
+        return self.videos.map({ $0 as PostProtocol })
     }
     
 }

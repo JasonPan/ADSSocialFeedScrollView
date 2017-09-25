@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YoutubeVideo: IntegratedSocialFeedPostProtocol {
+class YoutubeVideo: PostProtocol {
     
     private(set) var playlist: YoutubePlaylist!
     
@@ -36,7 +36,7 @@ class YoutubeVideo: IntegratedSocialFeedPostProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostProtocol
+    // MARK: - PostProtocol
     //*********************************************************************************************************
     
     var createdAtDate: NSDate! {

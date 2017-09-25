@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class SoundCloudUser {
+class SoundCloudUser: PostCollectionProtocol {
     
     private(set) var id             : String
     private(set) var website_title  : String!
@@ -97,6 +97,16 @@ class SoundCloudUser {
             
             block?()
         })
+    }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        // See: https://stackoverflow.com/a/30101004/699963
+        return self.tracks.map({ $0 as PostProtocol })
+        
     }
     
 }

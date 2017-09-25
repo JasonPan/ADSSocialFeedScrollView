@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FacebookPostView: ADSFeedPostView, UITextViewDelegate, IntegratedSocialFeedPostViewProtocol {
+class FacebookPostView: ADSFeedPostView, UITextViewDelegate, PostViewProtocol {
     
     private let CREATION_DATE_TEXT_COLOUR       : UIColor = UIColor(red: 145/255, green: 151/255, blue: 163/255, alpha: 1.0)
     private let POST_MESSAGE_TEXT_COLOUR        : UIColor = UIColor(red: 20/255, green: 24/255, blue: 35/255, alpha: 1.0)
@@ -69,14 +69,14 @@ class FacebookPostView: ADSFeedPostView, UITextViewDelegate, IntegratedSocialFee
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostViewProtocol
+    // MARK: - PostViewProtocol
     //*********************************************************************************************************
     
     var provider: ADSSocialFeedProvider {
         return ADSSocialFeedProvider.Facebook
     }
     
-    var postData: IntegratedSocialFeedPostProtocol {
+    var postData: PostProtocol {
         return self.post
     }
     
@@ -85,6 +85,18 @@ class FacebookPostView: ADSFeedPostView, UITextViewDelegate, IntegratedSocialFee
     //*********************************************************************************************************
     
     func refreshView() {
+        
+        self.pageNameLabel.text = self.post.owner.name
+        
+        // Attempt to download the profile picture of the post's owner.
+        if self.post.owner.profilePhotoURL != nil {
+            self.profilePhotoImageView.downloadedFrom(link: self.post.owner.profilePhotoURL, contentMode: .ScaleAspectFill, handler: nil)
+        }
+        
+        let creationDate = self.post.createdTime
+        self.postCreationDateLabel.text = ADSSocialDateFormatter.stringFromString(creationDate, provider: .Facebook)
+        self.postMessageTextView.text = self.post.message
+        
         if self.post.message != nil {
             
             self.postMessageTextView.sizeToFit()
@@ -121,6 +133,8 @@ class FacebookPostView: ADSFeedPostView, UITextViewDelegate, IntegratedSocialFee
         }else {
             self.setPostHeight(BASIC_POST_HEIGHT + self._postMessageTextViewHeightConstraint.constant)
         }
+        
+        self.backgroundColor = UIColor.whiteColor()
     }
     
 }

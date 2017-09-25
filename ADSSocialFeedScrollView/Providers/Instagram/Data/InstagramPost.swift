@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstagramPost: NSObject, IntegratedSocialFeedPostProtocol {
+class InstagramPost: NSObject, PostProtocol {
     
     var id: String!
     
@@ -36,7 +36,7 @@ class InstagramPost: NSObject, IntegratedSocialFeedPostProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostProtocol
+    // MARK: - PostProtocol
     //*********************************************************************************************************
     
     var createdAtDate: NSDate! {

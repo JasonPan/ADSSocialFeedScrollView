@@ -236,7 +236,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     
     func updateLoadMoreViewLocation() {
         self.setupLoadMoreView()
-        if self.displayedPostViews.count < self.postViews.count {
+        if self.displayedPostViews.count < self.filteredPostViews.count {
             self.loadMoreView.hidden = false
             self.__loadViewHeightLayoutConstraint.constant = 60
         }else {
@@ -256,7 +256,7 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
             }
             
             if self.loadMoreView.hidden == false {
-                if self.displayedPostViews.count == self.postViews.count {
+                if self.displayedPostViews.count == self.filteredPostViews.count {
                     
                     self.loadMoreView.hidden = true
 //                    self.loadMoreView.center = CGPointZero
@@ -283,12 +283,12 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     
     func loadNextPosts(count: Int, block: (Void -> ())?) {
         print("loadNextPosts: \(self.displayedPostViews.count)")
-        let safeCount = min(self.displayedPostViews.count + count, self.postViews.count)
+        let safeCount = min(self.displayedPostViews.count + count, self.filteredPostViews.count)
         
         let initCount = self.displayedPostViews.count
 //        for var i = self.displayedPostViews.count; i < safeCount; i++ { //SELFNOTE: DODGY!!!
         for var i = initCount; i < safeCount; i++ {
-            self.displayedPostViews.append(self.postViews[i])
+            self.displayedPostViews.append(self.filteredPostViews[i])
             let postView = self.displayedPostViews[i] as! UIView
             
             //Fix for scroll bar hidden by subviews issue
@@ -391,44 +391,9 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     // MARK: - Feed Display Items
     //*********************************************************************************************************
     
-    private var displayedPostViews: [IntegratedSocialFeedPostViewProtocol] = [IntegratedSocialFeedPostViewProtocol]()
-    private var postViews: [IntegratedSocialFeedPostViewProtocol] = [IntegratedSocialFeedPostViewProtocol]()
-    private var pagePostViews: [FacebookPostView] = [FacebookPostView]()
-    private var playlistItemViews: [YoutubePlaylistItemView] = [YoutubePlaylistItemView]()
-    private var instagramPostViews: [InstagramPostView] = [InstagramPostView]()
-    private var wordPressPostViews: [WordPressPostView] = [WordPressPostView]()
-    private var soundCloudTrackViews: [SoundCloudTrackView] = [SoundCloudTrackView]()
-    
-    
-    private func resetAndMergePosts() {
-        self.postViews = Array<IntegratedSocialFeedPostViewProtocol>()
-        self.displayedPostViews = Array<IntegratedSocialFeedPostViewProtocol>()
-        
-        for item in self.pagePostViews {
-            self.postViews.append(item)
-        }
-        
-        for item in self.playlistItemViews {
-            self.postViews.append(item)
-        }
-        
-        for item in self.instagramPostViews {
-            self.postViews.append(item)
-        }
-        
-        for item in self.wordPressPostViews {
-            self.postViews.append(item)
-        }
-        
-        for item in self.soundCloudTrackViews {
-            self.postViews.append(item)
-        }
-    }
-    
-    private func sortPosts() {
-        self.displayedPostViews = Array<IntegratedSocialFeedPostViewProtocol>()
-        self.postViews = self.postViews.sort({ $0.postData.createdAtDate.compare($1.postData.createdAtDate) == NSComparisonResult.OrderedDescending })
-    }
+    private var displayedPostViews  : [PostViewProtocol]    = []
+    private var filteredPostViews   : [PostViewProtocol]    = []
+    private var postViews           : [PostViewProtocol]    = []
     
     private func setUpConstraintsForPostView(postView: UIView, previousPostView: UIView?, isFinalView: Bool) {
         
@@ -551,17 +516,10 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         
     }
     
-    
-    
-    
-    
-    
-    
-    
     private func displayPosts() {
         
         for subview in self.subviews {
-            if let _ = subview as? IntegratedSocialFeedPostViewProtocol {
+            if let _ = subview as? PostViewProtocol {
                 subview.removeFromSuperview()
             }
         }
@@ -671,83 +629,66 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
     private func refreshAccountPosts() {
         self.isLoadingFeed = true
         
-        self.pagePostViews = Array<FacebookPostView>()
-        self.playlistItemViews = Array<YoutubePlaylistItemView>()
-        self.instagramPostViews = Array<InstagramPostView>()
-        self.wordPressPostViews = Array<WordPressPostView>()
-        self.soundCloudTrackViews = Array<SoundCloudTrackView>()
+        self.postViews.removeAll()
         
         for account in self.accounts {
             let accountData = account.dataPayload
             
             if let facebookPage = accountData as? FacebookPage {
-                self.refreshFacebookPagePosts(facebookPage)
+                self.reloadPostsInCollection(facebookPage)
             }
             if let youtubeChannel = accountData as? YoutubeChannel {
-                self.refreshYoutubePlaylistItems(youtubeChannel)
+                self.reloadPostsInCollection(youtubeChannel)
             }
             if let instagramUser = accountData as? InstagramUser {
-                self.refreshInstagramPosts(instagramUser)
+                self.reloadPostsInCollection(instagramUser)
             }
             if let wordPressPostCollection = accountData as? WordPressPostCollection {
-                self.refreshWordPressPosts(wordPressPostCollection)
+                self.reloadPostsInCollection(wordPressPostCollection)
             }
             if let soundCloudUser = accountData as? SoundCloudUser {
-                self.refreshSoundCloudTracks(soundCloudUser)
+                self.reloadPostsInCollection(soundCloudUser)
             }
         }
         
         // NOTE: Only display standalone YouTube playlists if there exists other (channel) playlists.
-        if self.playlistItemViews.count > 0 {
+        if self.postViews.contains({ $0.provider == .Youtube }) {
             self.refreshIndividualYoutubePlaylistItems()
         }
         
         self.isLoadingFeed = false
     }
     
-    private func refreshFacebookPagePosts(facebookPage: FacebookPage) {
-        guard facebookPage.feed != nil else { return }
+    /// Reload post views for the given post collection.
+    private func reloadPostsInCollection(collection: PostCollectionProtocol) {
+        guard let posts = collection.postItems else { return }
         
-        for var i: Int = 0; i < facebookPage.feed.count; i++ {
-            let currentPost: FacebookPost = facebookPage.feed[i]
+        var postViews: [PostViewProtocol] = []
+        
+        for post in posts {
             
-            let postView: FacebookPostView = FacebookPostView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), post: currentPost)
+            var postView: PostViewProtocol!
             
-            
-            postView.pageNameLabel.text = facebookPage.name
-            if facebookPage.profilePhotoURL != nil { postView.profilePhotoImageView.downloadedFrom(link: facebookPage.profilePhotoURL, contentMode: .ScaleAspectFill, handler: nil) }
-            
-            let creationDate = currentPost.createdTime
-            postView.postCreationDateLabel.text = ADSSocialDateFormatter.stringFromString(creationDate, provider: .Facebook)
-            postView.postMessageTextView.text = currentPost.message
+            if let post = post as? FacebookPost {
+                postView = FacebookPostView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), post: post)
+            }else if let post = post as? YoutubeVideo {
+                postView = YoutubePlaylistItemView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), playlistItem: post)
+            }else if let post = post as? InstagramPost {
+                let maxWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
+                postView = InstagramPostView(frame: CGRectMake(0, 0, maxWidth, 0), post: post)
+            }else if let post = post as? WordPressPost {
+                postView = WordPressPostView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), post: post, readMoreAction: ADSSocialFeedWordPressAccountProvider.displayPostAction)
+            }else if let post = post as? SoundCloudTrack {
+                postView = SoundCloudTrackView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), track: post)
+            }
             
             postView.refreshView()
             
+            postViews.append(postView)
             
-            postView.backgroundColor = UIColor.whiteColor()
-            
-            self.pagePostViews.append(postView)
         }
         
-        self.feedLoadCount++
-    }
-    
-    private func refreshYoutubePlaylistItems(youtubeChannel: YoutubeChannel) {
-        guard youtubeChannel.playlists != nil else { return }
-        
-        for playlist in youtubeChannel.playlists {
-            guard playlist.videos != nil else { continue }
-            
-            for var i: Int = 0; i < playlist.videos.count; i++ {
-                let currentPlaylistItem: YoutubeVideo = playlist.videos[i]
-                
-                let playlistItemView: YoutubePlaylistItemView = YoutubePlaylistItemView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), playlistItem: currentPlaylistItem)
-                
-                self.playlistItemViews.append(playlistItemView)
-            }
-        }
-        
-        self.feedLoadCount++
+        self.postViews += postViews
     }
     
     private func refreshIndividualYoutubePlaylistItems() {
@@ -761,79 +702,10 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         }
         
         for playlist in ADSSocialFeed.sYoutubePlaylists {
-            guard playlist.videos != nil else { continue }
-            
-            for var i: Int = 0; i < playlist.videos.count; i++ {
-                let currentPlaylistItem: YoutubeVideo = playlist.videos[i]
-                
-                let playlistItemView: YoutubePlaylistItemView = YoutubePlaylistItemView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), playlistItem: currentPlaylistItem)
-                
-                self.playlistItemViews.append(playlistItemView)
-            }
+            self.reloadPostsInCollection(playlist)
         }
         
         exitBlock()
-    }
-    
-    private func refreshInstagramPosts(instagramUser: InstagramUser) {
-        guard instagramUser.posts != nil else { return }
-        
-        let maxWidth: CGFloat = UIScreen.mainScreen().bounds.size.width
-        
-        for var i: Int = 0; i < instagramUser.posts.count; i++ {
-            let currentPost: InstagramPost = instagramUser.posts[i]
-            
-            let postView: InstagramPostView = InstagramPostView(frame: CGRectMake(0, 0, maxWidth, 0), post: currentPost)
-            postView.refreshView() //TODO: Investigate why neccesary...
-            
-            self.instagramPostViews.append(postView)
-        }
-        
-        self.feedLoadCount++
-    }
-    
-    private func refreshWordPressPosts(wordPressPostCollection: WordPressPostCollection) {
-        guard wordPressPostCollection.posts != nil else { return }
-        
-        for var i: Int = 0; i < wordPressPostCollection.posts.count; i++ {
-            let currentPost: WordPressPost = wordPressPostCollection.posts[i]
-            
-            let postView: WordPressPostView = WordPressPostView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), post: currentPost, readMoreAction: ADSSocialFeedWordPressAccountProvider.displayPostAction)
-            
-            
-            postView.postTitleLabel.text = currentPost.title
-//            if currentPost.image != nil { postView.postPhotoImageView.downloadedFrom(link: currentPost.image, contentMode: .ScaleAspectFill, handler: nil) }
-
-            if let creationDate = currentPost.publishDate {
-                postView.postCreationDateLabel.text = ADSSocialDateFormatter.stringFromDate(creationDate, provider: .WordPress)
-            }
-//            postView.postMessageTextView.text = currentPost.excerptText
-            
-            
-            
-            postView.refreshView()
-            
-            
-            postView.backgroundColor = UIColor.whiteColor()
-            
-            self.wordPressPostViews.append(postView)
-        }
-        
-        self.feedLoadCount++
-    }
-    
-    private func refreshSoundCloudTracks(soundCloudUser: SoundCloudUser) {
-//        guard soundCloudUser.tracks != nil else { return }
-        
-        for var i: Int = 0; i < soundCloudUser.tracks.count; i++ {
-            let track: SoundCloudTrack = soundCloudUser.tracks[i]
-            
-            let trackView: SoundCloudTrackView = SoundCloudTrackView(frame: CGRectMake(0, 0, DEVICE_SCREEN_WIDTH, 0), track: track)
-            
-            self.soundCloudTrackViews.append(trackView)
-        }
-        
-        self.feedLoadCount++
     }
     
     public func displayFilteredPostsWithProviders(providers: Set<ADSSocialFeedProvider>) {
@@ -853,9 +725,10 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
         
         self.providerFilterList = providers
         
-        self.resetAndMergePosts()
+        self.displayedPostViews.removeAll()
+        self.filteredPostViews.removeAll()
         
-        var filteredPostViews = Array<IntegratedSocialFeedPostViewProtocol>()
+        var filteredPostViews = Array<PostViewProtocol>()
         
         for provider in providers {
             
@@ -894,8 +767,9 @@ public class IntegratedSocialFeedScrollView: UIScrollView, UIScrollViewDelegate 
             }
         }
         
-        self.postViews = filteredPostViews
-        self.sortPosts()
+        filteredPostViews.sortInPlace({ $0.postData.createdAtDate.compare($1.postData.createdAtDate) == NSComparisonResult.OrderedDescending })
+        self.filteredPostViews = filteredPostViews
+        self.displayedPostViews.removeAll()
         self.loadNextPosts(10, block: nil)
         self.displayPosts()
         

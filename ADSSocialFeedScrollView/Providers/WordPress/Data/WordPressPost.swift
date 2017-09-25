@@ -9,7 +9,7 @@
 import Foundation
 import StringExtensionHTML
 
-class WordPressPost: IntegratedSocialFeedPostProtocol {
+class WordPressPost: PostProtocol {
     var title: String
     var excerptText: String!
     var link: NSURL
@@ -38,7 +38,7 @@ class WordPressPost: IntegratedSocialFeedPostProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostProtocol
+    // MARK: - PostProtocol
     //*********************************************************************************************************
     
     var createdAtDate: NSDate! {

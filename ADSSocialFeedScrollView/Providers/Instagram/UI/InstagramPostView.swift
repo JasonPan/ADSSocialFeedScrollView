@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstagramPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol {
+class InstagramPostView: ADSFeedPostView, PostViewProtocol {
     
     private let BASIC_POST_HEIGHT: CGFloat = 101//71
     private let HIGHLIGHTED_TEXT_COLOUR: UIColor = UIColor(red: 18/255, green: 86/255, blue: 136/255, alpha: 1.0)
@@ -80,14 +80,14 @@ class InstagramPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostViewProtocol
+    // MARK: - PostViewProtocol
     //*********************************************************************************************************
     
     var provider: ADSSocialFeedProvider {
         return ADSSocialFeedProvider.Instagram
     }
     
-    var postData: IntegratedSocialFeedPostProtocol {
+    var postData: PostProtocol {
         return self.post
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WordPressPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol, UITextViewDelegate {
+class WordPressPostView: ADSFeedPostView, PostViewProtocol, UITextViewDelegate {
     
     private let BASIC_POST_HEIGHT       : CGFloat = 56 - 23
     private let BASIC_IMAGE_POST_HEIGHT : CGFloat = 61 - 23
@@ -98,14 +98,14 @@ class WordPressPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol, 
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostViewProtocol
+    // MARK: - PostViewProtocol
     //*********************************************************************************************************
     
     var provider: ADSSocialFeedProvider {
         return ADSSocialFeedProvider.WordPress
     }
     
-    var postData: IntegratedSocialFeedPostProtocol {
+    var postData: PostProtocol {
         return self.post
     }
     
@@ -114,6 +114,15 @@ class WordPressPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol, 
     //*********************************************************************************************************
     
     func refreshView() {
+        
+        self.postTitleLabel.text = self.post.title
+//        if currentPost.image != nil { postView.postPhotoImageView.downloadedFrom(link: currentPost.image, contentMode: .ScaleAspectFill, handler: nil) }
+        
+        if let creationDate = self.post.publishDate {
+            self.postCreationDateLabel.text = ADSSocialDateFormatter.stringFromDate(creationDate, provider: .WordPress)
+        }
+//        postView.postMessageTextView.text = currentPost.excerptText
+        
         
         self.postTitleLabel.sizeToFit()
         self.postTitleLabel.layoutIfNeeded() //TODO: investigate. This line is essential to take into weird line break issues
@@ -205,6 +214,8 @@ class WordPressPostView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol, 
         }
         
         self.layoutIfNeeded()
+        
+        self.backgroundColor = UIColor.whiteColor()
     }
     
     //*********************************************************************************************************

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class SoundCloudTrack: IntegratedSocialFeedPostProtocol {
+class SoundCloudTrack: PostProtocol {
     
     var id              : String
     var title           : String
@@ -42,7 +42,7 @@ class SoundCloudTrack: IntegratedSocialFeedPostProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostProtocol
+    // MARK: - PostProtocol
     //*********************************************************************************************************
     
     var createdAtDate: NSDate! {

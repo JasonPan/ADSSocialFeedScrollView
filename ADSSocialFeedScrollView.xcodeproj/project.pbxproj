@@ -25,13 +25,14 @@
 		96201F6A1C79BEAA00B69856 /* ADSSocialFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F061C79BEA800B69856 /* ADSSocialFeed.swift */; };
 		96201F6B1C79BEAA00B69856 /* ADSSocialDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F071C79BEA800B69856 /* ADSSocialDateFormatter.swift */; };
 		96201F6C1C79BEAB00B69856 /* IntegratedSocialFeed Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F081C79BEA800B69856 /* IntegratedSocialFeed Helpers.swift */; };
-		96201F6D1C79BEAB00B69856 /* IntegratedSocialFeedPostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F091C79BEA800B69856 /* IntegratedSocialFeedPostProtocol.swift */; };
-		96201F6E1C79BEAB00B69856 /* IntegratedSocialFeedPostViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F0A1C79BEA800B69856 /* IntegratedSocialFeedPostViewProtocol.swift */; };
+		96201F6D1C79BEAB00B69856 /* PostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F091C79BEA800B69856 /* PostProtocol.swift */; };
+		96201F6E1C79BEAB00B69856 /* PostViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F0A1C79BEA800B69856 /* PostViewProtocol.swift */; };
 		96201F6F1C79BEAB00B69856 /* IntegratedSocialFeedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96201F0B1C79BEA800B69856 /* IntegratedSocialFeedScrollView.swift */; };
 		96367AF51C93FAFC002C199F /* LinkTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96367AF41C93FAFC002C199F /* LinkTextView.swift */; };
 		964999A31F73B0B80075ECE1 /* ADSSocialFeedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96201E701C79BD8700B69856 /* ADSSocialFeedScrollView.framework */; };
 		964999A41F73B0B80075ECE1 /* ADSSocialFeedScrollView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96201E701C79BD8700B69856 /* ADSSocialFeedScrollView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964999AB1F73B1840075ECE1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964999AA1F73B1840075ECE1 /* Helpers.swift */; };
+		964DBF401F7952C600D73201 /* PostCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964DBF3F1F7952C600D73201 /* PostCollectionProtocol.swift */; };
 		96543BE91C8675AD00B0BED3 /* FacebookPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96543BD61C8675AD00B0BED3 /* FacebookPage.swift */; };
 		96543BEA1C8675AD00B0BED3 /* FacebookPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96543BD71C8675AD00B0BED3 /* FacebookPost.swift */; };
 		96543BEB1C8675AD00B0BED3 /* FacebookPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96543BD91C8675AD00B0BED3 /* FacebookPostView.swift */; };
@@ -143,13 +144,14 @@
 		96201F061C79BEA800B69856 /* ADSSocialFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSSocialFeed.swift; sourceTree = "<group>"; };
 		96201F071C79BEA800B69856 /* ADSSocialDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSSocialDateFormatter.swift; sourceTree = "<group>"; };
 		96201F081C79BEA800B69856 /* IntegratedSocialFeed Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntegratedSocialFeed Helpers.swift"; sourceTree = "<group>"; };
-		96201F091C79BEA800B69856 /* IntegratedSocialFeedPostProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegratedSocialFeedPostProtocol.swift; sourceTree = "<group>"; };
-		96201F0A1C79BEA800B69856 /* IntegratedSocialFeedPostViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegratedSocialFeedPostViewProtocol.swift; sourceTree = "<group>"; };
+		96201F091C79BEA800B69856 /* PostProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostProtocol.swift; sourceTree = "<group>"; };
+		96201F0A1C79BEA800B69856 /* PostViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewProtocol.swift; sourceTree = "<group>"; };
 		96201F0B1C79BEA800B69856 /* IntegratedSocialFeedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegratedSocialFeedScrollView.swift; sourceTree = "<group>"; };
 		96201F7F1C79C1BD00B69856 /* module.private.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.private.modulemap; sourceTree = "<group>"; };
 		96201F811C79C3DB00B69856 /* ADSSocialFeedScrollView Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ADSSocialFeedScrollView Bridging-Header.h"; sourceTree = "<group>"; };
 		96367AF41C93FAFC002C199F /* LinkTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextView.swift; sourceTree = "<group>"; };
 		964999AA1F73B1840075ECE1 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		964DBF3F1F7952C600D73201 /* PostCollectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionProtocol.swift; sourceTree = "<group>"; };
 		96543BD61C8675AD00B0BED3 /* FacebookPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPage.swift; sourceTree = "<group>"; };
 		96543BD71C8675AD00B0BED3 /* FacebookPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPost.swift; sourceTree = "<group>"; };
 		96543BD91C8675AD00B0BED3 /* FacebookPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPostView.swift; sourceTree = "<group>"; };
@@ -369,15 +371,24 @@
 				96EF7EDA1C85043700C747D2 /* ADSSocialFeedAccountProvider.swift */,
 				96201F071C79BEA800B69856 /* ADSSocialDateFormatter.swift */,
 				96201F081C79BEA800B69856 /* IntegratedSocialFeed Helpers.swift */,
-				96201F091C79BEA800B69856 /* IntegratedSocialFeedPostProtocol.swift */,
-				96201F0A1C79BEA800B69856 /* IntegratedSocialFeedPostViewProtocol.swift */,
 				96201F0B1C79BEA800B69856 /* IntegratedSocialFeedScrollView.swift */,
+				964DBF3E1F7952AE00D73201 /* Protocols */,
 				9668E8F31CA9151D001AD813 /* Future */,
 				9668E8F41CA91525001AD813 /* Generic */,
 				960640621CA6DDAE0065E9D2 /* Media.xcassets */,
 				96D104671CDDDA8C00A4E17C /* ADSActivityIndicatorImageView.swift */,
 			);
 			path = IntegratedSocialFeedScrollView;
+			sourceTree = "<group>";
+		};
+		964DBF3E1F7952AE00D73201 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				964DBF3F1F7952C600D73201 /* PostCollectionProtocol.swift */,
+				96201F091C79BEA800B69856 /* PostProtocol.swift */,
+				96201F0A1C79BEA800B69856 /* PostViewProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		96543BD31C8675AD00B0BED3 /* Providers */ = {
@@ -1115,6 +1126,7 @@
 			files = (
 				96543BF31C8675AD00B0BED3 /* YoutubePlaylistItemView.swift in Sources */,
 				96201F6F1C79BEAB00B69856 /* IntegratedSocialFeedScrollView.swift in Sources */,
+				964DBF401F7952C600D73201 /* PostCollectionProtocol.swift in Sources */,
 				96D8754F1C8D8BB700C98143 /* WordPressPost.swift in Sources */,
 				96201F6B1C79BEAA00B69856 /* ADSSocialDateFormatter.swift in Sources */,
 				96543BED1C8675AD00B0BED3 /* InstagramPost.swift in Sources */,
@@ -1129,10 +1141,10 @@
 				96664C9E1C9BB0990028F96A /* ADSYoutubePlaylistScrollView.swift in Sources */,
 				96367AF51C93FAFC002C199F /* LinkTextView.swift in Sources */,
 				96BA3C4E1C945F290011CC28 /* InstagramCommentsTextView.swift in Sources */,
-				96201F6E1C79BEAB00B69856 /* IntegratedSocialFeedPostViewProtocol.swift in Sources */,
+				96201F6E1C79BEAB00B69856 /* PostViewProtocol.swift in Sources */,
 				96543BEA1C8675AD00B0BED3 /* FacebookPost.swift in Sources */,
 				96201F6C1C79BEAB00B69856 /* IntegratedSocialFeed Helpers.swift in Sources */,
-				96201F6D1C79BEAB00B69856 /* IntegratedSocialFeedPostProtocol.swift in Sources */,
+				96201F6D1C79BEAB00B69856 /* PostProtocol.swift in Sources */,
 				96201F6A1C79BEAA00B69856 /* ADSSocialFeed.swift in Sources */,
 				96C81B641C92E7B000019E2D /* ADSFeedPostView.swift in Sources */,
 				96D104681CDDDA8C00A4E17C /* ADSActivityIndicatorImageView.swift in Sources */,

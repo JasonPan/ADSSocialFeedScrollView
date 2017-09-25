@@ -10,7 +10,7 @@ import UIKit
 
 let YOUTUBE_DATA_API_BASE_URL_STRING = "https://www.googleapis.com/youtube/v3"
 
-class YoutubeChannel {
+class YoutubeChannel: PostCollectionProtocol {
     
     private(set) var id             : String
     private(set) var name           : String!
@@ -271,4 +271,15 @@ class YoutubeChannel {
             }
         })
     }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        return self.playlists.reduce([PostProtocol](), combine: { (acc, playlist) in
+            return (acc ?? []) + (playlist.postItems ?? [])
+        })
+    }
+    
 }

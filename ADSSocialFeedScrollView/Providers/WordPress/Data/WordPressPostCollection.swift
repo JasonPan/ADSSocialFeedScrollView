@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WordPressPostCollection {
+class WordPressPostCollection: PostCollectionProtocol {
     
     private var baseURLString: String
     var posts: [WordPressPost]!
@@ -192,4 +192,14 @@ class WordPressPostCollection {
             }
         })
     }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        // See: https://stackoverflow.com/a/30101004/699963
+        return self.posts.map({ $0 as PostProtocol })
+    }
+    
 }

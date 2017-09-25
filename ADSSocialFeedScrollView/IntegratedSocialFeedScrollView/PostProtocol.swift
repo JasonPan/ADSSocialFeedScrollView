@@ -1,5 +1,5 @@
 //
-//  IntegratedSocialFeedPostProtocol.swift
+//  PostProtocol.swift
 //  ADSSocialFeedScrollView
 //
 //  Created by Jason Pan on 15/02/2016.
@@ -8,6 +8,10 @@
 
 import Foundation
 
-protocol IntegratedSocialFeedPostProtocol {
+/// An abstraction of a post.
+protocol PostProtocol {
+    
+    /// The creation date of this post. Used for sorting.
     var createdAtDate: NSDate! { get }
+    
 }

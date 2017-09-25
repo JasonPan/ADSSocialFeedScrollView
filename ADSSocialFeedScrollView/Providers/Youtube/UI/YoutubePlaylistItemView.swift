@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 import XCDYouTubeKit
 
-class YoutubePlaylistItemView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol {
+class YoutubePlaylistItemView: ADSFeedPostView, PostViewProtocol {
     
     private let BASIC_PLAYLIST_ITEM_HEIGHT: CGFloat = 88
     
@@ -58,15 +58,19 @@ class YoutubePlaylistItemView: ADSFeedPostView, IntegratedSocialFeedPostViewProt
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostViewProtocol
+    // MARK: - PostViewProtocol
     //*********************************************************************************************************
     
     var provider: ADSSocialFeedProvider {
         return ADSSocialFeedProvider.Youtube
     }
     
-    var postData: IntegratedSocialFeedPostProtocol {
+    var postData: PostProtocol {
         return self.playlistItem
+    }
+    
+    func refreshView() {
+        // Do nothing.
     }
     
     //*********************************************************************************************************

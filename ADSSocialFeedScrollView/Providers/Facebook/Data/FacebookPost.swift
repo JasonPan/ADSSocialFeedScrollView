@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FacebookPost: IntegratedSocialFeedPostProtocol {
+class FacebookPost: PostProtocol {
     
     private var internal_createdTime: NSDate?
     private var internal_image: UIImage?
@@ -17,16 +17,18 @@ class FacebookPost: IntegratedSocialFeedPostProtocol {
     private(set) var id             : String
     private(set) var message        : String?
     private(set) var image          : String?
+    private(set) var owner          : FacebookPage
     
     //*********************************************************************************************************
     // MARK: - Constructors
     //*********************************************************************************************************
     
-    init(id: String, createdTime: String, message: String?, image: String?) {
+    init(id: String, createdTime: String, message: String?, image: String?, owner: FacebookPage) {
         self.id = id
         self.createdTime = createdTime
         self.message = message
         self.image = image
+        self.owner = owner
         
         self.internal_createdTime = ADSSocialDateFormatter.dateFromString(self.createdTime, provider: .Facebook)
         
@@ -53,10 +55,11 @@ class FacebookPost: IntegratedSocialFeedPostProtocol {
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostProtocol
+    // MARK: - PostProtocol
     //*********************************************************************************************************
     
     var createdAtDate: NSDate! {
         return self.internal_createdTime
     }
+    
 }

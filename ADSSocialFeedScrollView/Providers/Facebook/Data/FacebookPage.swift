@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 
-class FacebookPage {
+class FacebookPage: PostCollectionProtocol {
     
     private(set) var id                 : String!
     private(set) var name               : String!
@@ -92,7 +92,7 @@ class FacebookPage {
                                 }
                             }
                             
-                            let facebookPost: FacebookPost = FacebookPost(id: id!, createdTime: created_time!, message: message, image: picture)
+                            let facebookPost: FacebookPost = FacebookPost(id: id!, createdTime: created_time!, message: message, image: picture, owner: self)
                             feedArray.append(facebookPost)
                         }
                         
@@ -106,6 +106,15 @@ class FacebookPage {
                 block?()
             })
         })
+    }
+    
+    //*********************************************************************************************************
+    // MARK: - PostCollectionProtocol
+    //*********************************************************************************************************
+    
+    var postItems: [PostProtocol]? {
+        // See: https://stackoverflow.com/a/30101004/699963
+        return self.feed.map({ $0 as PostProtocol })
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class SoundCloudTrackView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol {
+class SoundCloudTrackView: ADSFeedPostView, PostViewProtocol {
     
     private let BASIC_PLAYLIST_ITEM_HEIGHT: CGFloat = 88
     
@@ -103,15 +103,19 @@ class SoundCloudTrackView: ADSFeedPostView, IntegratedSocialFeedPostViewProtocol
     }
     
     //*********************************************************************************************************
-    // MARK: - IntegratedSocialFeedPostViewProtocol
+    // MARK: - PostViewProtocol
     //*********************************************************************************************************
     
     var provider: ADSSocialFeedProvider {
         return ADSSocialFeedProvider.SoundCloud
     }
     
-    var postData: IntegratedSocialFeedPostProtocol {
+    var postData: PostProtocol {
         return self.track
+    }
+    
+    func refreshView() {
+        // Do nothing.
     }
     
     //*********************************************************************************************************
